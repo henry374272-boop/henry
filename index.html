@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ascend Capital - 未来智领企业官网</title>
+  <style>
+    :root {
+      --bg: #05070d;
+      --panel: rgba(255, 255, 255, 0.04);
+      --card: rgba(255, 255, 255, 0.06);
+      --text: #e8ecf2;
+      --muted: #9ba4b5;
+      --accent: #58d6ff;
+      --accent-2: #8f7bff;
+      --gradient: linear-gradient(135deg, #101828, #0a0d1a 55%, #05070d 100%);
+      --radius: 18px;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 7, 13, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #f7f9fb;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 12px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(88, 214, 255, 0.3);
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav a {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, rgba(88, 214, 255, 0.18), rgba(143, 123, 255, 0.18));
+      color: #f7f9fb;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--muted);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(88, 214, 255, 0.2); }
+
+    .hero {
+      background: var(--gradient);
+      position: relative;
+      overflow: hidden;
+      padding: 90px 24px 110px;
+    }
+
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      filter: blur(90px);
+      opacity: 0.35;
+    }
+
+    .hero::before { width: 280px; height: 280px; background: #58d6ff; left: -60px; top: -40px; }
+    .hero::after { width: 320px; height: 320px; background: #8f7bff; right: -80px; bottom: -60px; }
+
+    .hero-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      position: relative;
+      z-index: 2;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      margin: 0 0 12px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 28px;
+      max-width: 560px;
+    }
+
+    .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+    .chip { padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.06); color: var(--muted); font-weight: 600; }
+
+    .hero-visual {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      height: 100%;
+      min-height: 260px;
+      display: block;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    section { padding: 90px 24px; position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+    .section-title { font-size: 28px; margin: 0; }
+    .section-desc { color: var(--muted); max-width: 640px; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); border-color: rgba(88, 214, 255, 0.5); box-shadow: 0 18px 48px rgba(0,0,0,0.45); }
+
+    .card h3 { margin-top: 0; margin-bottom: 8px; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .pill { display: inline-block; padding: 6px 10px; border-radius: 10px; background: rgba(88,214,255,0.12); color: #cbeeff; font-weight: 700; font-size: 12px; letter-spacing: 0.4px; }
+    .meta { color: var(--muted); font-size: 14px; }
+
+    .about {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+
+    .accent-box {
+      padding: 22px;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(88,214,255,0.12), rgba(143,123,255,0.12));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .list { display: grid; gap: 12px; margin: 0; padding-left: 18px; color: var(--muted); }
+
+    .logo-wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      align-items: center;
+    }
+
+    .logo-wall img { width: 100%; height: 64px; object-fit: contain; filter: grayscale(1) contrast(1.1); opacity: 0.85; background: rgba(255,255,255,0.02); border-radius: 12px; padding: 12px; }
+
+    .cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+    .case-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-card .badge { position: absolute; top: 16px; right: 16px; }
+    .case-card strong { display: block; margin-bottom: 6px; font-size: 18px; }
+
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+
+    .team-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 14px; margin-bottom: 12px; }
+    .team-card .role { color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-card { display: grid; gap: 12px; }
+    .contact-card a { color: var(--accent); }
+
+    footer {
+      padding: 40px 24px 60px;
+      background: #04050a;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; }
+
+    .divider { height: 1px; background: rgba(255, 255, 255, 0.06); margin: 12px 0; }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hero { padding-top: 64px; }
+      .nav { padding: 12px 16px; }
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const CONTENT = {
+      branding: {
+        logoText: "ASCEND",
+        company: "Ascend Capital Partners",
+        tagline: "智能资本 · 引领新经济"
+      },
+      nav: [
+        { label: "首页", link: "#hero" },
+        { label: "服务", link: "#services" },
+        { label: "案例", link: "#cases" },
+        { label: "团队", link: "#team" },
+        { label: "联系", link: "#contact" }
+      ],
+      hero: {
+        title: "以战略与科技为引擎，放大企业增长势能",
+        subtitle: "我们为新一代行业领导者提供并购顾问、数字化转型与资本运作咨询，将前沿科技与审慎治理相结合，打造韧性与速度兼备的企业增长曲线。",
+        chips: ["跨境并购", "数字化转型", "投后赋能"],
+        primaryCTA: { label: "预约咨询", link: "#contact" },
+        secondaryCTA: { label: "下载介绍", link: "https://example.com/deck" },
+        heroImage: "https://picsum.photos/900/520?random=2"
+      },
+      about: {
+        title: "关于公司",
+        intro: "Ascend Capital 汇聚来自投行、咨询与科技公司的资深团队，为高速成长的企业提供从战略到执行的一体化解决方案。",
+        highlights: [
+          "覆盖 TMT、先进制造、消费与新能源等核心赛道",
+          "累计完成 120+ 亿人民币跨境交易及募资",
+          "打造可落地的转型路线图与数据驱动运营体系"
+        ],
+        stats: [
+          { label: "交易完成率", value: "93%" },
+          { label: "平均增速", value: "37%" },
+          { label: "投后满意度", value: "4.9/5" }
+        ],
+        heroImage: "https://picsum.photos/820/520?random=3"
+      },
+      services: {
+        title: "服务内容",
+        desc: "从资本策略到运营落地，全链路陪伴企业穿越周期。",
+        items: [
+          {
+            name: "并购与投融资顾问",
+            detail: "设计并购路径、财务模型与估值，协调多方资源加速交易完成。",
+            badge: "M&A"
+          },
+          {
+            name: "数字化转型",
+            detail: "以数据中台与智能决策为核心，重塑业务流程与客户体验。",
+            badge: "Digital"
+          },
+          {
+            name: "投后赋能",
+            detail: "品牌、销售、组织与供应链协同进化，确保资本驱动的可持续增长。",
+            badge: "Growth"
+          },
+          {
+            name: "ESG & 治理",
+            detail: "建立责任治理体系，提升合规与可持续披露水平，增强全球资本认可度。",
+            badge: "ESG"
+          }
+        ]
+      },
+      cases: {
+        title: "案例与客户",
+        desc: "与行业先锋共创：金融、医疗、制造、消费科技等多元客户群体。",
+        projects: [
+          {
+            title: "亚太智能制造龙头跨境收购",
+            summary: "引入北美自动化技术，协同实现 28% 产能提升，完成 6.2 亿人民币交易闭合。",
+            badge: "Cross-border"
+          },
+          {
+            title: "区域零售集团数字化",
+            summary: "打造端到端数据中台，客单价提升 17%，会员留存提升 24%。",
+            badge: "DX"
+          },
+          {
+            title: "新能源资产证券化",
+            summary: "设计绿色资产结构与合规披露，成功发行 9.5 亿元 ABS。",
+            badge: "Securitization"
+          }
+        ],
+        logos: [
+          "https://picsum.photos/200/100?random=11",
+          "https://picsum.photos/200/100?random=12",
+          "https://picsum.photos/200/100?random=13",
+          "https://picsum.photos/200/100?random=14",
+          "https://picsum.photos/200/100?random=15",
+          "https://picsum.photos/200/100?random=16"
+        ]
+      },
+      team: {
+        title: "核心团队",
+        desc: "深谙资本、战略与技术的跨界合伙人，陪伴企业共同成长。",
+        members: [
+          {
+            name: "林奕辰",
+            role: "管理合伙人 · 并购",
+            bio: "前华尔街投行董事总经理，主导多起跨境并购与融资。",
+            avatar: "https://picsum.photos/400/400?random=21"
+          },
+          {
+            name: "周语安",
+            role: "合伙人 · 数字化",
+            bio: "前顶尖咨询公司数字战略负责人，专注数据中台与运营提升。",
+            avatar: "https://picsum.photos/400/400?random=22"
+          },
+          {
+            name: "陈思源",
+            role: "合伙人 · ESG",
+            bio: "拥有 12 年可持续与治理经验，帮助企业完成全球披露与评级提升。",
+            avatar: "https://picsum.photos/400/400?random=23"
+          },
+          {
+            name: "王嘉树",
+            role: "投资总监",
+            bio: "聚焦科技与新能源赛道，覆盖并购、募资与投后协同。",
+            avatar: "https://picsum.photos/400/400?random=24"
+          }
+        ]
+      },
+      contact: {
+        title: "联系与合作",
+        desc: "告诉我们您的增长目标，我们将于 24 小时内回电。",
+        email: "hello@ascendcapital.com",
+        phone: "+86 21 6789 1234",
+        address: "上海·陆家嘴金融城 88 号 32F",
+        cta: "预约私享沟通"
+      },
+      footer: {
+        copy: "© 2024 Ascend Capital Partners. All rights reserved.",
+        links: [
+          { label: "隐私政策", link: "#" },
+          { label: "信息安全", link: "#" },
+          { label: "加入我们", link: "#" }
+        ]
+      }
+    };
+  </script>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div>
+          <div id="brand-name">Ascend</div>
+          <small id="brand-tagline" style="color: var(--muted);"></small>
+        </div>
+      </div>
+      <nav>
+        <ul id="navLinks"></ul>
+      </nav>
+      <a class="btn" id="navCTA" href="#contact">预约沟通</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="tag" id="hero-tag"></div>
+          <h1 id="hero-title"></h1>
+          <p id="hero-subtitle"></p>
+          <div class="chip-row" id="hero-chips"></div>
+          <div class="actions" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn" id="hero-primary" href="#"></a>
+            <a class="btn secondary" id="hero-secondary" href="#"></a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img id="hero-image" alt="Hero visual" src="" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-inner about">
+        <div>
+          <div class="tag">关于我们</div>
+          <h2 class="section-title" id="about-title"></h2>
+          <p class="section-desc" id="about-intro"></p>
+          <ul class="list" id="about-highlights"></ul>
+        </div>
+        <div class="accent-box">
+          <img id="about-image" alt="About visual" src="" style="width:100%; border-radius:12px; margin-bottom:16px;" />
+          <div class="card-grid" id="about-stats" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <div class="tag">服务</div>
+            <h2 class="section-title" id="services-title"></h2>
+            <p class="section-desc" id="services-desc"></p>
+          </div>
+          <span class="pill">全链路交付</span>
+        </div>
+        <div class="card-grid" id="services-grid"></div>
+      </div>
+    </section>
+
+    <section id="cases">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <div class="tag">案例</div>
+            <h2 class="section-title" id="cases-title"></h2>
+            <p class="section-desc" id="cases-desc"></p>
+          </div>
+          <span class="pill">精选 3 例</span>
+        </div>
+        <div class="cases" id="cases-grid"></div>
+        <div class="divider"></div>
+        <div class="logo-wall" id="logo-wall"></div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <div class="tag">团队</div>
+            <h2 class="section-title" id="team-title"></h2>
+            <p class="section-desc" id="team-desc"></p>
+          </div>
+          <span class="pill">跨界合伙人</span>
+        </div>
+        <div class="team-grid" id="team-grid"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-inner contact">
+        <div class="accent-box contact-card">
+          <div class="tag">联系</div>
+          <h2 id="contact-title" class="section-title"></h2>
+          <p class="section-desc" id="contact-desc"></p>
+          <div><strong>邮箱</strong><br /><a id="contact-email" href=""></a></div>
+          <div><strong>电话</strong><br /><a id="contact-phone" href=""></a></div>
+          <div><strong>地址</strong><br /><span id="contact-address"></span></div>
+          <a class="btn" id="contact-cta" href="#">预约沟通</a>
+        </div>
+        <div class="card" style="min-height:240px; display:grid; align-content:center; gap:12px;">
+          <h3>我们如何开始</h3>
+          <p class="meta">告诉我们您的目标、时间表与关键挑战，我们会为您准备一份 360° 初步方案。</p>
+          <div class="chip-row">
+            <span class="chip">战略复盘</span>
+            <span class="chip">交易评估</span>
+            <span class="chip">数字化诊断</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="brand">
+          <div class="brand-mark">A</div>
+          <div>
+            <div id="footer-name">Ascend</div>
+            <small id="footer-tagline" style="color: var(--muted);"></small>
+          </div>
+        </div>
+        <div id="footer-links" style="display:flex; gap:14px; flex-wrap:wrap;"></div>
+      </div>
+      <div class="divider"></div>
+      <div id="footer-copy"></div>
+    </div>
+  </footer>
+
+  <script>
+    const qs = (selector) => document.querySelector(selector);
+
+    function render() {
+      const { branding, nav, hero, about, services, cases, team, contact, footer } = CONTENT;
+
+      qs('#brand-name').textContent = branding.company;
+      qs('#brand-tagline').textContent = branding.tagline;
+      qs('#footer-name').textContent = branding.company;
+      qs('#footer-tagline').textContent = branding.tagline;
+
+      const navList = qs('#navLinks');
+      nav.forEach(item => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.textContent = item.label;
+        a.href = item.link;
+        li.appendChild(a);
+        navList.appendChild(li);
+      });
+
+      qs('#navCTA').href = contact ? '#contact' : '#';
+
+      qs('#hero-tag').textContent = branding.tagline;
+      qs('#hero-title').textContent = hero.title;
+      qs('#hero-subtitle').textContent = hero.subtitle;
+      qs('#hero-image').src = hero.heroImage;
+      qs('#hero-primary').textContent = hero.primaryCTA.label;
+      qs('#hero-primary').href = hero.primaryCTA.link;
+      qs('#hero-secondary').textContent = hero.secondaryCTA.label;
+      qs('#hero-secondary').href = hero.secondaryCTA.link;
+      const chipBox = qs('#hero-chips');
+      hero.chips.forEach(text => {
+        const span = document.createElement('span');
+        span.className = 'chip';
+        span.textContent = text;
+        chipBox.appendChild(span);
+      });
+
+      qs('#about-title').textContent = about.title;
+      qs('#about-intro').textContent = about.intro;
+      qs('#about-image').src = about.heroImage;
+      const list = qs('#about-highlights');
+      about.highlights.forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        list.appendChild(li);
+      });
+      const statsWrap = qs('#about-stats');
+      about.stats.forEach(stat => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<h3>${stat.value}</h3><p class="meta">${stat.label}</p>`;
+        statsWrap.appendChild(card);
+      });
+
+      qs('#services-title').textContent = services.title;
+      qs('#services-desc').textContent = services.desc;
+      const serviceGrid = qs('#services-grid');
+      services.items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <span class="pill">${item.badge}</span>
+          <h3>${item.name}</h3>
+          <p>${item.detail}</p>
+        `;
+        serviceGrid.appendChild(card);
+      });
+
+      qs('#cases-title').textContent = cases.title;
+      qs('#cases-desc').textContent = cases.desc;
+      const caseGrid = qs('#cases-grid');
+      cases.projects.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'card case-card';
+        card.innerHTML = `
+          <span class="pill badge">${project.badge}</span>
+          <strong>${project.title}</strong>
+          <p>${project.summary}</p>
+        `;
+        caseGrid.appendChild(card);
+      });
+      const logoWall = qs('#logo-wall');
+      cases.logos.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Client logo placeholder';
+        logoWall.appendChild(img);
+      });
+
+      qs('#team-title').textContent = team.title;
+      qs('#team-desc').textContent = team.desc;
+      const teamGrid = qs('#team-grid');
+      team.members.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'card team-card';
+        card.innerHTML = `
+          <img src="${member.avatar}" alt="${member.name}" />
+          <strong>${member.name}</strong>
+          <div class="role">${member.role}</div>
+          <p>${member.bio}</p>
+        `;
+        teamGrid.appendChild(card);
+      });
+
+      qs('#contact-title').textContent = contact.title;
+      qs('#contact-desc').textContent = contact.desc;
+      qs('#contact-email').textContent = contact.email;
+      qs('#contact-email').href = `mailto:${contact.email}`;
+      qs('#contact-phone').textContent = contact.phone;
+      qs('#contact-phone').href = `tel:${contact.phone}`;
+      qs('#contact-address').textContent = contact.address;
+      qs('#contact-cta').textContent = contact.cta;
+
+      const footerLinks = qs('#footer-links');
+      footer.links.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.link;
+        a.textContent = link.label;
+        footerLinks.appendChild(a);
+      });
+      qs('#footer-copy').textContent = footer.copy;
+    }
+
+    function handleScrollSpy() {
+      const sections = document.querySelectorAll('main section');
+      const links = document.querySelectorAll('#navLinks a');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+      sections.forEach(section => observer.observe(section));
+    }
+
+    function addRevealEffects() {
+      const revealItems = document.querySelectorAll('.card, .hero-text, .hero-visual, .accent-box');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.opacity = '1';
+          }
+        });
+      }, { threshold: 0.2 });
+      revealItems.forEach(item => {
+        item.style.transform = 'translateY(20px)';
+        item.style.opacity = '0';
+        observer.observe(item);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      render();
+      handleScrollSpy();
+      addRevealEffects();
+    });
+  </script>
+</body>
+</html>
